@@ -30,7 +30,7 @@ public class FormTest {
     }
 
     @Test
-    public void formTest() {
+    public void formTest() throws InterruptedException {
         System.out.println("Start test");
         driver.get(URI);
         DemoqaForm form = new DemoqaForm(driver);
@@ -47,6 +47,8 @@ public class FormTest {
         form.clickSubmit();
         String actualName=form.getValue("Student Name");
         Assert.assertEquals(actualName,FIRST_NAME+" "+LAST_NAME);
+        Thread.sleep(10000);
+        System.out.println("finish test");
     }
 
     @AfterTest
