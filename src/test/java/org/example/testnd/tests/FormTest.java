@@ -3,6 +3,7 @@ package org.example.testnd.tests;
 import org.example.pom.DemoqaForm;
 import org.example.utils.SeleniumDriver;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,18 +11,21 @@ import org.testng.annotations.Test;
 public class FormTest {
     static public WebDriver driver;
     public static String URI = "https://demoqa.com/automation-practice-form";
-    public static String FIRST_NAME = "Anatol";
-    public static String LAST_NAME = "Sneg";
+    public static String FIRST_NAME = "Ana";
+    public static String LAST_NAME = "Miau";
     public static String EMAIL = "ex@gmail.com";
-    public static String GENDER = "Male";
+    public static String GENDER = "Female";
     public static String NUMBER = "1234567890";
     public static String DATE = "18 Apr 1999";
     public static String SUBJECT = "Maths";
     public static String HOBBY = "Music";
+    public static String STATE="NCR";
+    public static String CITY="Delhi";
+
 
     @BeforeTest
     public void beforeTest() {
-        driver = SeleniumDriver.getAutoLocalDriver();
+        driver = SeleniumDriver.getRemoteDriver();
         driver.manage().window().maximize();
     }
 
@@ -38,6 +42,11 @@ public class FormTest {
         form.setDate(DATE);
         form.setSubject(SUBJECT);
         form.setHobby(HOBBY);
+        form.setState(STATE);
+        form.setCity(CITY);
+        form.clickSubmit();
+        String actualName=form.getValue("Student Name");
+        Assert.assertEquals(actualName,FIRST_NAME+" "+LAST_NAME);
     }
 
     @AfterTest
