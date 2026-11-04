@@ -69,7 +69,7 @@ public class DemoqaForm {
         userNumber.sendKeys(numberParam);
     }
     public void setState(String stateParam){
-        scrollToAmount(200);
+        scrollToAmount(400);
 
         state.click();
         driver.findElement(By.xpath("//*[text()='"+stateParam+"']")).click();
